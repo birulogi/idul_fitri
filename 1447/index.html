@@ -1,1 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Birulogi - Idulfitri 1447 H</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>       
+    
+    <style type="text/css">
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
 
+        /* OVERLAY AWAL */
+        #envelope-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://cdn.pixabay.com/photo/2024/04/02/15/02/ai-generated-8671016_1280.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        #rain-canvas { position: absolute; inset: 0; pointer-events: none; }
+
+        /* AMPLOP RESPONSIVE */
+        .envelope-v {
+            position: relative; width: 80%; max-width: 280px; aspect-ratio: 2 / 3;
+            background: #004d99 url('https://cdn.pixabay.com/photo/2024/06/07/17/34/ai-generated-8815071_1280.jpg') no-repeat center center;
+            background-size: cover; border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            display: flex; justify-content: center; align-items: center;
+            border: 2px solid rgba(255,215,0,0.5);
+        }
+        
+        .envelope-v::before { content: ""; position: absolute; inset: 0; background: rgba(0, 51, 102, 0.7); border-radius: 13px; }
+
+        .flap-v {
+            position: absolute; top: 0; left: 0; width: 100%; height: 40%;
+            background: #002b55; clip-path: polygon(0 0, 100% 0, 50% 100%);
+            transform-origin: top; transition: 0.8s; z-index: 5;
+        }
+        .envelope-v.open .flap-v { transform: rotateX(180deg); opacity: 0; }
+
+        /* WISH CONTAINER */
+        #wish-container {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 90%; max-width: 500px; max-height: 95vh;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px);
+            border-radius: 24px; border: 1px solid rgba(255,255,255,0.2);
+            text-align: center; color: white; display: none; z-index: 1000;
+            overflow-y: auto; scrollbar-width: none;
+        }
+        #wish-container::-webkit-scrollbar { display: none; }
+        
+        .arabic { font-family: 'Amiri', serif; font-size: 2.5rem; color: #ffd700; }
+        
+        #scenery-wrapper { display: none; width: 100%; height: 100%; position: absolute; top: 0; }
+    </style>
+</head>
+<body class="bg-black">
+
+    <div id="envelope-overlay">
+        <canvas id="rain-canvas"></canvas>
+        <div class="envelope-v" id="main-env">
+            <div class="flap-v"></div>
+            <button class="px-8 py-3 bg-[#ffd700] text-[#003366] rounded-full font-black text-sm shadow-xl z-10 animate-bounce" onclick="startApp()">BUKA SURAT</button>
+        </div>
+    </div>
+
+    <div id="wish-container" class="animate__animated p-0">
+        <div class="p-8 pb-4">
+            <div class="arabic">عيد مبارك</div>
+            <h2 class="font-black text-xl mt-2">Minal Aidin Wal Faizin</h2>
+            <p class="italic leading-relaxed my-6 text-sm opacity-90">
+                "Ngahaturkeun wilujeng Idulfitri 1447 H. Bilih aya cariosan anu kirang merenah atanapi paripolah anu matak tugenah, neda dihapunten lahir sareng batin. Mugia urang sadaya kalebet jalmi-jalmi anu mulang ka fitrah."
+            </p>
+            <div class="inline-block p-2 bg-white rounded-xl mb-4">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Maaf Anda Belum Beruntung, Coba lagi nanti ya. Ikan hiu makan tomat, buat kamyu tetap semangat! ❤️" class="w-24 h-24" alt="QR Code"/>
+            </div>
+        </div>
+
+        <footer class="w-full bg-[#011611]/80 backdrop-blur-xl no-border-zone border-t border-emerald-500/10 shadow-[0_-10px_40px_rgba(0,0,0,0.3)] mt-4">
+            <div class="w-full h-[1px] bg-emerald-500/20"></div>
+            <div class="max-w-[1200px] mx-auto px-6 py-4 flex flex-col items-center justify-center gap-4">
+                <div class="text-center">
+                </div>
+                <div class="flex justify-center items-center gap-2">
+                    <a href="https://wa.me/+6285318649269" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-xl bg-emerald-400/5 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                    </a>
+                    <a href="https://t.me/birulogi" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-xl bg-emerald-400/5 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">
+                        <i class="fab fa-telegram-plane text-sm"></i>
+                    </a>
+                    <a href="https://instagram.com/bl.birulogi" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-xl bg-emerald-400/5 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                    <a href="https://tiktok.com/@birulogi" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-xl bg-emerald-400/5 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">
+                        <i class="fab fa-tiktok text-sm"></i>
+                    </a>
+                    <a href="https://youtube.com/@birulogi" target="_blank" class="w-8 h-8 flex items-center justify-center rounded-xl bg-emerald-400/5 text-emerald-400 hover:bg-emerald-500 hover:text-white transition-all">
+                        <i class="fab fa-youtube text-sm"></i>
+                    </a>
+                </div>
+                <div class="text-center">
+                    <p class="text-[9px] font-[900] uppercase text-slate-300 leading-none tracking-tight">
+                        DIBUAT DENGAN <span class="text-rose-500 animate-pulse text-[10px] mx-0.5">❤️</span> OLEH 
+                        <a href="https://taplink.cc/birusalawasna" target="_blank" class="text-emerald-400 font-[900] hover:underline uppercase transition-colors">birulogi</a>
+                    </p>
+                </div>
+            </div>
+            <div class="h-4 md:hidden"></div>
+        </footer>
+    </div>
+
+    <div id="scenery-wrapper">
+        <div id="sky" class="h-full w-full"></div>
+        <div id="sun_yellow"></div>
+        <div id="sun_red"></div>
+        <div id="clouds"></div>
+        <div id="ground"></div>
+        <div id="night"></div>
+        <div id="stars"></div>        
+        <div id="moon"></div>
+    </div>
+
+    <script type="text/javascript" src="jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="jquery.color.js"></script>
+    <script type="text/javascript">
+        // ANIMASI HUJAN
+        const canvas = document.getElementById('rain-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const drops = Array.from({length: 60}, () => ({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            l: Math.random() * 20 + 10, v: Math.random() * 8 + 4
+        }));
+
+        function rain() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+            ctx.lineWidth = 1;
+            drops.forEach(d => {
+                ctx.beginPath(); ctx.moveTo(d.x, d.y); ctx.lineTo(d.x, d.y+d.l); ctx.stroke();
+                d.y += d.v; if(d.y > canvas.height) d.y = -d.l;
+            });
+            requestAnimationFrame(rain);
+        }
+        rain();
+
+        function startApp() {
+            $('#main-env').addClass('open');
+            setTimeout(function() {
+                $('#envelope-overlay').fadeOut(1000, function() {
+                    $('#scenery-wrapper').show();
+                    $('#wish-container').fadeIn(1000).css('display', 'block').addClass('animate__zoomIn');
+                    
+                    const hours = new Date().getHours();
+                    if(hours >= 7 && hours < 18) {
+                        $('#sun_yellow, #sun_red').css({top: '20%', opacity: 1});
+                        $('#sky').css('background-color', '#4face6');
+                    } else {
+                        $('#sky').css('background-color', '#020406');
+                        $('#night').css('opacity', 0.8);
+                        $('#stars').css('opacity', 1);
+                        $('#moon').css({top: '30%', opacity: 1});
+                    }
+                });
+            }, 800);
+        }
+    </script>
+</body>
+</html>
